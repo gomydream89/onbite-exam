@@ -1,0 +1,6 @@
+1. 테일윈드 확장 설치 
+Tailwind CSS IntelliSense
+npm i -D prettier-plugin-tailwindcss
+
+2. npx shadcn@latest init
+https://ui.shadcn.com/docs/installation/vite#existing-vite-project 
