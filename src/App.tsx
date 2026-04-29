@@ -1,48 +1,29 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { cn } from "./lib/utils";
-
+import { Outlet, Route, Routes } from "react-router";
 import "./App.css";
-import { Toaster } from "./components/ui/sonner";
-import { toast } from "sonner";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import IndexPage from "@/pages/index-page";
+import SignInPage from "@/pages/sign-in-page";
+import SignUpPage from "@/pages/sign-up-page";
+import CounterPage from "@/pages/counter-page";
+
+function AuthLayout() {
+  return (
+    <div>
+      <header>Auth!</header>
+      <Outlet />
+    </div>
+  );
+}
 
 function App() {
-  const isActive = true;
-
   return (
-    <div className="p-5">
-      <Toaster />
-
-      <Carousel className="mx-10">
-        <CarouselContent>
-          <CarouselItem className="basis-1/3">1</CarouselItem>
-          <CarouselItem>2</CarouselItem>
-          <CarouselItem>3</CarouselItem>
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
-
-      <Button
-        onClick={() => {
-          toast("토스트메시지", {
-            position: "top-center",
-          });
-        }}
-      >
-        버튼!
-      </Button>
-      <div className={cn(isActive ? "text-green-500" : "text-red-500")}>
-        isActive
-      </div>
-    </div>
+    <Routes>
+      <Route path="/" element={<IndexPage />} />
+      <Route path="/counter" element={<CounterPage />} />
+      <Route element={<AuthLayout />}>
+        <Route path="/sign-in" element={<SignInPage />} />
+        <Route path="/sign-up" element={<SignUpPage />} />
+      </Route>
+    </Routes>
   );
 }
 
